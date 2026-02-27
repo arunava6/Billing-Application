@@ -15,7 +15,7 @@ import java.sql.Timestamp;
 @NoArgsConstructor
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String userId;
     private String email;

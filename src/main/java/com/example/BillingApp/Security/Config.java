@@ -13,6 +13,7 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
@@ -24,20 +25,24 @@ import java.util.List;
 @RequiredArgsConstructor
 public class Config {
 
+    private final JwtRequestFilter jwtRequestFilter;
+
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) {
         httpSecurity.cors(Customizer.withDefaults())
                 .csrf(AbstractHttpConfigurer::disable)
-                .authorizeHttpRequests(auth -> auth.requestMatchers("/login").permitAll()
+                .authorizeHttpRequests(auth -> auth
+                        .requestMatchers("/login").permitAll()
                         .requestMatchers("/category", "/items").hasAnyRole("USER", "ADMIN")
                         .requestMatchers("/admin/**").hasAnyRole("ADMIN")
                         .anyRequest().authenticated())
-                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
+                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                .addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
         return httpSecurity.build();
     }
 
     @Bean
-    public PasswordEncoder passwordEncoder(){
+    public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
@@ -45,7 +50,6 @@ public class Config {
     public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) {
         return authenticationConfiguration.getAuthenticationManager();
     }
-
 
     @Bean
     public CorsFilter corsFilter() {
@@ -64,5 +68,3 @@ public class Config {
         return source;
     }
 }
-
-
