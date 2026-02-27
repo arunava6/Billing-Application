@@ -4,6 +4,7 @@ import com.example.BillingApp.Dto.CategoryRequest;
 import com.example.BillingApp.Dto.CategoryResponse;
 import com.example.BillingApp.Entity.Category;
 import com.example.BillingApp.Repository.CategoryRepo;
+import com.example.BillingApp.Repository.ItemRepo;
 import com.example.BillingApp.Service.CategoryService;
 import com.example.BillingApp.Service.UploadImageService;
 import lombok.RequiredArgsConstructor;
@@ -19,6 +20,7 @@ import java.util.UUID;
 public class CategoryServiceImpl implements CategoryService {
     private final CategoryRepo categoryRepo;
     private final UploadImageService uploadImageService;
+    private final ItemRepo itemRepo;
 
     @Override
     public CategoryResponse add(CategoryRequest categoryRequest, MultipartFile file) {
@@ -57,8 +59,9 @@ public class CategoryServiceImpl implements CategoryService {
         categoryRepo.delete(existingCategory);
     }
 
-    private static @NonNull CategoryResponse getCategoryResponse(Category newCategory) {
+    private CategoryResponse getCategoryResponse(Category newCategory) {
         CategoryResponse categoryResponse = new CategoryResponse();
+        Integer itemCount = itemRepo.countByCategory_Id(newCategory.getId());
 
         categoryResponse.setCategoryId(newCategory.getCategoryId());
         categoryResponse.setName(newCategory.getName());
@@ -67,6 +70,7 @@ public class CategoryServiceImpl implements CategoryService {
         categoryResponse.setImgUrl(newCategory.getImgUrl());
         categoryResponse.setCreatedAt(newCategory.getCreatedAt());
         categoryResponse.setUpdatedAt(newCategory.getUpdatedAt());
+        categoryResponse.setItems(itemCount);
         return categoryResponse;
     }
 }

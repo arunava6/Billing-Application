@@ -30,12 +30,12 @@ public class CategoryController {
                 .body(categoryService.add(categoryRequest, file));
     }
 
-    @GetMapping
+    @GetMapping("/category")
     public ResponseEntity<?> fetchCategories() {
         return ResponseEntity.status(HttpStatus.OK).body(categoryService.read());
     }
 
-    @DeleteMapping("/admin/{categoryId}")
+    @DeleteMapping("/admin/category/{categoryId}")
     public ResponseEntity<?> deleteCategory(@PathVariable String categoryId) {
         try {
             categoryService.delete(categoryId);
