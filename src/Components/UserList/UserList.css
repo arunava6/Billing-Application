@@ -1,0 +1,116 @@
+/* Main Container */
+.user-list-container {
+  padding: 30px;
+  width: 100%;
+  box-sizing: border-box;
+  min-height: calc(100vh - 70px);
+  background: linear-gradient(135deg, #1e1e2f, #252538);
+  color: #ffffff;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Search Bar */
+.search-bar {
+  margin-bottom: 25px;
+  text-align: center;
+}
+
+.search-bar input {
+  width: 350px;
+  max-width: 95%;
+  padding: 12px 18px;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  background-color: #2f2f45;
+  color: #ffffff;
+  transition: 0.3s ease;
+}
+
+.search-bar input::placeholder {
+  color: #aaa;
+}
+
+.search-bar input:focus {
+  box-shadow: 0 0 8px rgba(90, 130, 255, 0.6);
+}
+
+/* Cards Wrapper */
+.users-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: flex-start;
+}
+
+/* Individual Card */
+.user-card {
+  flex: 1 1 280px;
+  max-width: 320px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 20px;
+  border-radius: 14px;
+  background-color: #2a2a40;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.45);
+  transition: all 0.3s ease;
+}
+
+.user-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.6);
+}
+
+/* User Info Section */
+.user-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.user-info h6 {
+  margin: 0;
+  font-size: 17px;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.user-info p {
+  margin: 4px 0 0 0;
+  font-size: 14px;
+  color: #b0b0d0;
+}
+
+/* Delete Button */
+.delete-btn {
+  border-radius: 8px;
+  padding: 6px 10px;
+  transition: all 0.2s ease;
+}
+
+.delete-btn:hover {
+  transform: scale(1.1);
+}
+
+/* No Users Message */
+.no-user {
+  text-align: center;
+  width: 100%;
+  font-size: 18px;
+  color: #cccccc;
+  margin-top: 40px;
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+  .users-wrapper {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .user-card {
+    max-width: 90%;
+  }
+}

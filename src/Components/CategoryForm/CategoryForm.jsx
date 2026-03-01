@@ -10,7 +10,7 @@ const CategoryForm = () => {
     const [loading, setLoading] = useState(false)
     const [formData, setFormData] = useState({
         name: '',
-        desc: '',
+        description: '',
         bgColor: '#2c2c2c'
     })
 
@@ -43,7 +43,7 @@ const CategoryForm = () => {
                 toast.success('Saved Successfully!!')
                 setFormData({
                     name: '',
-                    desc: '',
+                    description: '',
                     bgColor: '#2c2c2c'
                 })
                 setImage(null)
@@ -80,14 +80,14 @@ const CategoryForm = () => {
                                     />
                                 </div>
                                 <div className="mb-3">
-                                    <label htmlFor="bio" className="form-label">Description</label>
+                                    <label htmlFor="bio" className="form-label">descriptionription</label>
                                     <textarea
                                         className="form-control"
-                                        id="desc"
-                                        name='desc'
+                                        id="description"
+                                        name='description'
                                         rows="3"
                                         placeholder="write content here..."
-                                        value={formData.desc}
+                                        value={formData.description}
                                         onChange={handleChange}
                                     ></textarea>
                                 </div>

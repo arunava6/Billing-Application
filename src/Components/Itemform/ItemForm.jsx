@@ -46,13 +46,13 @@ const ItemForm = () => {
                                     />
                                 </div>
 
-                                {/* Description */}
+                                {/* descriptionription */}
                                 <div className="mb-3">
-                                    <label className="form-label">Description</label>
+                                    <label className="form-label">descriptionription</label>
                                     <textarea
                                         className="form-control custom-input"
                                         rows="3"
-                                        placeholder="Write description..."
+                                        placeholder="Write descriptionription..."
                                     ></textarea>
                                 </div>
 
