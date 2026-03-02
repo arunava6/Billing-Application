@@ -6,10 +6,10 @@ import CategoryList from '../../Components/CategoryList/CategoryList'
 const ManageCategory = () => {
   return (
     <div className="category-container text-light">
-      <div className="left-column">
+      <div className="category-left">
         <CategoryForm/>
       </div>
-      <div className="right-column">
+      <div className="category-right">
         <CategoryList/>
       </div>
     </div>

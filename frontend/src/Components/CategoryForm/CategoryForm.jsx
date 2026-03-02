@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useEffect, useRef, useState } from 'react'
 import { addCategory } from '../../Services/CategoryService'
 import toast from 'react-hot-toast'
 import { AppContext } from '../../Context/AppContext'
@@ -6,11 +6,12 @@ import { AppContext } from '../../Context/AppContext'
 const CategoryForm = () => {
 
     const { categories, setCategories } = useContext(AppContext)
+    const fileInputRef = useRef(null)
     const [image, setImage] = useState(null)
     const [loading, setLoading] = useState(false)
     const [formData, setFormData] = useState({
         name: '',
-        desc: '',
+        description: '',
         bgColor: '#2c2c2c'
     })
 
@@ -43,10 +44,13 @@ const CategoryForm = () => {
                 toast.success('Saved Successfully!!')
                 setFormData({
                     name: '',
-                    desc: '',
+                    description: '',
                     bgColor: '#2c2c2c'
                 })
                 setImage(null)
+                if (fileInputRef.current) {
+                    fileInputRef.current.value = ""
+                }
             } else {
                 toast.error("error in adding")
             }
@@ -83,11 +87,11 @@ const CategoryForm = () => {
                                     <label htmlFor="bio" className="form-label">Description</label>
                                     <textarea
                                         className="form-control"
-                                        id="desc"
-                                        name='desc'
+                                        id="description"
+                                        name='description'
                                         rows="3"
                                         placeholder="write content here..."
-                                        value={formData.desc}
+                                        value={formData.description}
                                         onChange={handleChange}
                                     ></textarea>
                                 </div>
@@ -110,6 +114,7 @@ const CategoryForm = () => {
                                         className="form-control"
                                         accept="image/*"
                                         onChange={handleImage}
+                                        ref={fileInputRef}
                                         required
                                     />
                                 </div>

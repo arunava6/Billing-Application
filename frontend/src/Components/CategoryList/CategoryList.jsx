@@ -76,7 +76,7 @@ const CategoryList = () => {
               />
               <div className="category-info">
                 <h5>{category.name}</h5>
-                <p>items: 5 </p>
+                <p>Items: {category.items} </p>
               </div>
               <button
                 className="btn btn-sm btn-danger delete-btn"
