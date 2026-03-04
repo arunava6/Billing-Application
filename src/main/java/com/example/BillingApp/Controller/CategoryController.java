@@ -11,6 +11,8 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.server.ResponseStatusException;
 import tools.jackson.databind.ObjectMapper;
 
+import java.util.Map;
+
 @RestController
 @RequiredArgsConstructor
 public class CategoryController {
@@ -39,7 +41,7 @@ public class CategoryController {
     public ResponseEntity<?> deleteCategory(@PathVariable String categoryId) {
         try {
             categoryService.delete(categoryId);
-            return ResponseEntity.ok("Category deleted successfully");
+            return ResponseEntity.ok(Map.of("message","Category deleted successfully"));
         } catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
         }
