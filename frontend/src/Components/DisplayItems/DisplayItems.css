@@ -1,0 +1,85 @@
+/* Main container */
+.item-scroll-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  row-gap: 8px;
+  column-gap: 15px;
+  height: 450px;
+  overflow-y: auto;
+  padding: 20px;
+}
+
+/* Rectangle Card */
+.item-horizontal-card {
+  position: relative;
+  background: #1e1e1e;
+  border-radius: 12px;
+  padding: 10px;
+  color: white;
+  display: flex;            
+  align-items: center;
+  gap: 12px;
+  height: 130px;          
+  transition: 0.3s ease;
+}
+
+.item-horizontal-card:hover {
+  transform: scale(1.02);
+}
+
+/* Image */
+.item-image {
+  width: 100px;              
+  height: 100px;               
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+/* Info section */
+.item-info {
+  flex: 1;
+}
+
+.item-name {
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.item-category {
+  font-size: 13px;
+  color: #aaa;
+  margin-bottom: 4px;
+}
+
+.item-price {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+/* Cart icon (top right) */
+.item-cart-icon {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+/* Plus button (bottom right) */
+.item-plus-btn {
+  position: absolute;
+  bottom: 8px;
+  right: 10px;
+  background: #28a745;
+  border: none;
+  color: white;
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  cursor: pointer;
+}
+
+.item-plus-btn:hover {
+  background: #218838;
+}

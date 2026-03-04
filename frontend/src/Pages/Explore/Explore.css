@@ -1,62 +1,54 @@
-
+/* ===== MAIN CONTAINER ===== */
 .explore-container {
     display: flex;
-    gap: 20px;
+    gap: 15px;
     padding: 20px;
-    height: calc(100vh - 70px); 
+    min-height: 100vh;
     background: linear-gradient(135deg, #1e1e2f, #252538);
     box-sizing: border-box;
 }
 
-
+/* ===== LEFT SECTION ===== */
 .explore-left {
     flex: 7;
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 10px;
 }
 
-/* Categories Section (smaller height) */
-.categories-section {
-    flex: 2; 
-}
-
-/* Items Section (larger height) */
-.items-section {
-    flex: 5;
-}
-
-
+/* ===== RIGHT SECTION ===== */
 .explore-right {
     flex: 3;
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 10px;
 }
 
-/* Right side rows: Customer Form, Cart Items, Cart Summary */
-.customer-section {
-    flex: 2; 
-}
-
-.cart-items-section {
-    flex: 5; 
-}
-
+/* Remove fixed flex ratios causing clipping */
+.categories-section,
+.items-section,
+.customer-section,
+.cart-items-section,
 .cart-summary-section {
-    flex: 1; 
+    flex: unset;
 }
 
+/* ===== CARD DESIGN ===== */
 .explore-card {
     background-color: #2a2a40;
     border-radius: 12px;
-    padding: 20px;
+    padding: 10px;
     color: #ffffff;
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
-    overflow-y: auto; 
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
 }
 
-/* Card title */
+/* Only cart items section should scroll */
+.cart-items-section {
+    max-height: 220px;   /* controlled height */
+    overflow-y: auto;
+}
+
+/* Card Heading */
 .explore-card h5 {
     margin-bottom: 15px;
     font-weight: 600;
@@ -65,31 +57,23 @@
 }
 
 /* Scrollbar */
-.explore-card::-webkit-scrollbar {
+.cart-items-section::-webkit-scrollbar {
     width: 6px;
 }
 
-.explore-card::-webkit-scrollbar-thumb {
+.cart-items-section::-webkit-scrollbar-thumb {
     background: #4e73df;
     border-radius: 10px;
 }
 
+/* ===== RESPONSIVE ===== */
 @media (max-width: 992px) {
     .explore-container {
         flex-direction: column;
-        height: auto;
     }
 
     .explore-left,
     .explore-right {
         flex: 100%;
-    }
-
-    .categories-section,
-    .items-section,
-    .customer-section,
-    .cart-items-section,
-    .cart-summary-section {
-        flex: unset; 
     }
 }
