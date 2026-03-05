@@ -2,12 +2,14 @@ import React, { useContext } from 'react'
 import './Menubar.css'
 import { assets } from '../../assets/assets'
 import { AppContext } from '../../Context/AppContext'
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 
 const Menubar = () => {
 
-    const { setAuthData } = useContext(AppContext)
+    const { setAuthData, auth } = useContext(AppContext)
     const navigate = useNavigate()
+    const location = useLocation()
+
 
     const handleLogout = () => {
         localStorage.removeItem("token")
@@ -15,6 +17,12 @@ const Menubar = () => {
         setAuthData(null, null)
         navigate("/login")
     }
+
+    const isActive = (path) => {
+        return location.pathname === path;
+    }
+
+    const isAdmin = auth.role === "ADMIN"
 
     return (
         <nav
@@ -43,11 +51,36 @@ const Menubar = () => {
                 <div className="collapse navbar-collapse align-items-center" id="navbarCollapse">
 
                     <div className="navbar-nav mx-auto">
-                        <a href="/dashboard" className="nav-item nav-link">Dashboard</a>
-                        <a href="/explore" className="nav-item nav-link">Explore</a>
-                        <a href="/items" className="nav-item nav-link">Manage Items</a>
-                        <a href="/categories" className="nav-item nav-link">Manage Categories</a>
-                        <a href="/users" className="nav-item nav-link">Manage Users</a>
+                        <a href="/dashboard" className={`nav-item nav-link menu-link ${isActive("/dashboard") ? 'active-link' : ''}`}
+                        >
+                            Dashboard
+                        </a>
+                        <a href="/explore" className={`nav-item nav-link menu-link ${isActive("/explore") ? 'active-link' : ''}`}
+                        >
+                            Explore
+                        </a>
+                        {
+                            isAdmin && (
+                                <>
+                                    <a href="/items" className={`nav-item nav-link menu-link ${isActive("/items") ? 'active-link' : ''}`}
+                                    >
+                                        Manage Items
+                                    </a>
+                                    <a href="/categories" className={`nav-item nav-link menu-link ${isActive("/categories") ? 'active-link' : ''}`}
+                                    >
+                                        Manage Categories
+                                    </a>
+                                    <a href="/users" className={`nav-item nav-link menu-link ${isActive("/users") ? 'active-link' : ''}`}
+                                    >
+                                        Manage Users
+                                    </a>
+                                </>
+                            )
+                        }
+                        <a href="/orders" className={`nav-item nav-link menu-link ${isActive("/orders") ? 'active-link' : ''}`}
+                        >
+                            Order History
+                        </a>
                     </div>
 
                     <ul className="navbar-nav">
