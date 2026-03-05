@@ -19,7 +19,6 @@ const ReceiptPopup = ({ orderDetails, onClose, onPrint }) => {
 
   return (
     <div className="receipt-overlay">
-
       <div className="receipt-container card shadow-lg">
 
         {/* Header */}
@@ -61,7 +60,6 @@ const ReceiptPopup = ({ orderDetails, onClose, onPrint }) => {
 
           {/* Price Section */}
           <div className="receipt-summary mt-3">
-
             <p className="d-flex justify-content-between">
               <span>Subtotal</span>
               <span>₹ {subTotal}</span>
@@ -76,32 +74,23 @@ const ReceiptPopup = ({ orderDetails, onClose, onPrint }) => {
               <span>Grand Total</span>
               <span className="text-success">₹ {grandTotal}</span>
             </p>
-
           </div>
 
           {/* UPI Payment Details */}
           {paymentMethod === "UPI" && paymentDetails && (
-
             <div className="upi-details mt-3">
-
               <h6 className="text-success">UPI Payment Details</h6>
-
               <p>
                 <strong>Razorpay Order ID :</strong>
                 {paymentDetails.razorpayOrderId}
               </p>
-
               <p>
                 <strong>Razorpay Payment ID :</strong>
                 {paymentDetails.razorpayPaymentId}
               </p>
-
             </div>
-
           )}
-
         </div>
-
         {/* Footer */}
         <div className="card-footer text-center">
 
@@ -120,11 +109,8 @@ const ReceiptPopup = ({ orderDetails, onClose, onPrint }) => {
             <i className="bi bi-x-circle me-1"></i>
             Close
           </button>
-
         </div>
-
       </div>
-
     </div>
   );
 };

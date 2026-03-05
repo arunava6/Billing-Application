@@ -1,0 +1,46 @@
+/* ============================= */
+/* DASHBOARD PAGE */
+/* ============================= */
+
+.dashboard-container {
+    background-color: #1e1e2f;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+/* Cards */
+
+.dashboard-card {
+    background-color: #2a2a40;
+    border: none;
+    border-radius: 10px;
+    color: white;
+}
+
+.dashboard-card h3 {
+    font-weight: 700;
+}
+
+/* Table Container */
+
+.dashboard-table-container {
+    background-color: #2a2a40;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+/* Table */
+
+.dashboard-table th {
+    font-weight: 600;
+}
+
+/* Responsive */
+
+@media (max-width: 768px) {
+
+    .dashboard-card h3 {
+        font-size: 22px;
+    }
+
+}
