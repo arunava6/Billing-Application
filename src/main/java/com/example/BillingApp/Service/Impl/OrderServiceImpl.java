@@ -1,9 +1,6 @@
 package com.example.BillingApp.Service.Impl;
 
-import com.example.BillingApp.Dto.OrderRequest;
-import com.example.BillingApp.Dto.OrderResponse;
-import com.example.BillingApp.Dto.PaymentDetails;
-import com.example.BillingApp.Dto.PaymentStatus;
+import com.example.BillingApp.Dto.*;
 import com.example.BillingApp.Entity.Order;
 import com.example.BillingApp.Entity.OrderItem;
 import com.example.BillingApp.Entity.PaymentMethod;
@@ -90,8 +87,8 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public void deleteOrder(String orderId) {
-        Order existingOrder=orderRepo.findByOrderId(orderId).orElseThrow(
-                ()->new RuntimeException("Order Id is not present")
+        Order existingOrder = orderRepo.findByOrderId(orderId).orElseThrow(
+                () -> new RuntimeException("Order Id is not present")
         );
         orderRepo.delete(existingOrder);
 
@@ -99,11 +96,35 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public List<OrderResponse> fetchOrders() {
-        List<Order> orders=orderRepo.findAll();
+        List<Order> orders = orderRepo.findAll();
 
         return orders.stream()
                 .map(order -> convertToOrderResponse(order))
                 .toList();
+    }
+
+    @Override
+    public OrderResponse veriyPayment(RazorpayVerificationRequest request) {
+        Order existingOrder = orderRepo.findByOrderId(request.getOrderId()).orElseThrow(
+                () -> new RuntimeException("Order Id not found")
+        );
+
+        if (!verifyRazorpayRequest(request.getRazorpayOrderId(), request.getRazorpayPaymentId(), request.getSignature())) {
+            throw new RuntimeException("Payment failed");
+        }
+
+        PaymentDetails paymentDetails = existingOrder.getPaymentDetails();
+        paymentDetails.setRazorpayPaymentId(request.getRazorpayPaymentId());
+        paymentDetails.setRazorpayOrderId(request.getRazorpayOrderId());
+        paymentDetails.setRazorpaySignature(request.getSignature());
+        paymentDetails.setPaymentstatus(PaymentStatus.COMPLETED);
+
+        orderRepo.save(existingOrder);
+        return convertToOrderResponse(existingOrder);
+    }
+
+    private boolean verifyRazorpayRequest(String razorpayOrderId, String razorpayPaymentId, String signature) {
+        return true;
     }
 }
 

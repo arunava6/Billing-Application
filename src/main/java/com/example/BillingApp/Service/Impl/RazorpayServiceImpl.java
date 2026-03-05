@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class RazorpayServiceImpl implements RazorpayService {
 
-    @Value("${razorpay.key.id}")
+    @Value("${razorpay.api.key}")
     private String key;
     @Value("${razorpay.key.secret}")
     private String secret;
