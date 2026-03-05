@@ -1,3 +1,7 @@
+/* ============================= */
+/* CATEGORY PAGE */
+/* ============================= */
+
 .category-container {
     display: flex;
     height: 100vh;
@@ -9,7 +13,7 @@
 }
 
 /* LEFT COLUMN - 70% */
-.left-column {
+.category-left {
     flex: 7;
     background-color: #2a2a40;
     border-radius: 10px;
@@ -19,7 +23,7 @@
 }
 
 /* RIGHT COLUMN - 30% */
-.right-column {
+.category-right {
     flex: 3;
     background-color: #252538;
     border-radius: 10px;
@@ -28,26 +32,26 @@
     overflow-y: auto;
 }
 
-/* Scrollbar Styling */
-.left-column::-webkit-scrollbar,
-.right-column::-webkit-scrollbar {
+/* Scrollbar */
+.category-left::-webkit-scrollbar,
+.category-right::-webkit-scrollbar {
     width: 6px;
 }
 
-.left-column::-webkit-scrollbar-thumb,
-.right-column::-webkit-scrollbar-thumb {
+.category-left::-webkit-scrollbar-thumb,
+.category-right::-webkit-scrollbar-thumb {
     background: #555;
     border-radius: 10px;
 }
 
-/* Responsive Design */
+/* Responsive */
 @media (max-width: 992px) {
     .category-container {
         flex-direction: column;
     }
 
-    .left-column,
-    .right-column {
+    .category-left,
+    .category-right {
         flex: 100%;
         height: auto;
     }

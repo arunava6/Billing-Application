@@ -37,8 +37,9 @@ const Login = () => {
                 localStorage.setItem("Role", response.data.role)
                 setAuthData(response.data.token, response.data.role)
                 navigate("/dashboard")
+            } else {
+                toast.error("error in Login")
             }
-
         } catch (error) {
             toast.error("Server Error!!")
         } finally {

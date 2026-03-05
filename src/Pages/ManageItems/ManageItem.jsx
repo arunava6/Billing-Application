@@ -6,10 +6,10 @@ import ItemList from '../../Components/ItemList/ItemList'
 const ManageItem = () => {
   return (
     <div className="item-container text-light">
-      <div className="left-column">
+      <div className="item-left">
         <ItemForm/>
       </div>
-      <div className="right-column">
+      <div className="item-right">
         <ItemList/>
       </div>
     </div>

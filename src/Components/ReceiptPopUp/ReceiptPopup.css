@@ -1,0 +1,47 @@
+.receipt-overlay{
+    position: fixed;
+    top:0;
+    left:0;
+    height:100%;
+    width:100%;
+    background: rgba(0,0,0,0.6);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    z-index:2000;
+}
+
+.receipt-container{
+    width:420px;
+    max-width:95%;
+    border-radius:10px;
+}
+
+.receipt-body{
+    max-height:60vh;
+    overflow-y:auto;
+}
+
+.receipt-summary{
+    border-top:1px dashed #ccc;
+    padding-top:10px;
+}
+
+.upi-details{
+    background:#f5fff8;
+    border:1px solid #d8f5e3;
+    padding:10px;
+    border-radius:6px;
+}
+
+@media(max-width:576px){
+
+    .receipt-container{
+        width:95%;
+    }
+
+    .receipt-body{
+        font-size:14px;
+    }
+
+}

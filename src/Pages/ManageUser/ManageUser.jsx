@@ -22,10 +22,10 @@ const ManageUser = () => {
 
   return (
     <div className="user-container text-light">
-      <div className="left-column">
+      <div className="user-left">
         <Userform setUsers={setUsers}/>
       </div>
-      <div className="right-column">
+      <div className="user-right">
         <UserList users={users} setUsers={setUsers}/>
       </div>
     </div>
