@@ -7,8 +7,10 @@ import com.example.BillingApp.Entity.PaymentMethod;
 import com.example.BillingApp.Repository.OrderRepo;
 import com.example.BillingApp.Service.OrderService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -121,6 +123,27 @@ public class OrderServiceImpl implements OrderService {
 
         orderRepo.save(existingOrder);
         return convertToOrderResponse(existingOrder);
+    }
+
+    @Override
+    public Double sumSales(LocalDate date) {
+        return orderRepo.sumSalesByDate(date);
+    }
+
+    @Override
+    public Long countSales(LocalDate date) {
+        return orderRepo.countSalesByDate(date);
+    }
+
+
+    @Override
+    public List<OrderResponse> fetchRecentOrder() {
+        return orderRepo.findRecentOrder(PageRequest.of(0,5))
+                .stream()
+                .map(
+                        orderItem -> convertToOrderResponse(orderItem)
+                )
+                .toList();
     }
 
     private boolean verifyRazorpayRequest(String razorpayOrderId, String razorpayPaymentId, String signature) {

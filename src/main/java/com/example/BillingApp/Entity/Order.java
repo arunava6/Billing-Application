@@ -35,7 +35,6 @@ public class Order {
     @Enumerated(value = EnumType.STRING)
     private PaymentMethod paymentMethod;
 
-
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "order_id")
     List<OrderItem> orderItems = new ArrayList<>();
